@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import Header from './components/common/Header';
 import Sidebar from './components/common/Sidebar';
 import Dashboard from './pages/Dashboard';
@@ -44,24 +45,26 @@ function App() {
   };
 
   return (
-    <OfflineProvider>
-      <div className="min-h-screen bg-gray-50">
-        <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
-        
-        <div className="flex pt-16">
-          <Sidebar 
-            isOpen={isSidebarOpen} 
-            onClose={() => setIsSidebarOpen(false)} 
-            activePage={activePage}
-            setActivePage={setActivePage}
-          />
+    <BrowserRouter>
+      <OfflineProvider>
+        <div className="min-h-screen bg-gray-50">
+          <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
           
-          <main className="flex-1 p-4 lg:p-6 lg:ml-64">
-            {renderPage()}
-          </main>
+          <div className="flex pt-16">
+            <Sidebar 
+              isOpen={isSidebarOpen} 
+              onClose={() => setIsSidebarOpen(false)} 
+              activePage={activePage}
+              setActivePage={setActivePage}
+            />
+            
+            <main className="flex-1 p-4 lg:p-6 lg:ml-64">
+              {renderPage()}
+            </main>
+          </div>
         </div>
-      </div>
-    </OfflineProvider>
+      </OfflineProvider>
+    </BrowserRouter>
   );
 }
 
